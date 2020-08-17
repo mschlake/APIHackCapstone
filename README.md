@@ -1,2 +1,2 @@
 # CapstoneApp
-API Hack Capstone - HTML, CSS, and JavaScript
+API Hack Capstone - HTML, CSS, and Jquery
