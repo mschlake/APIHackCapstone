@@ -2,8 +2,31 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Roboto', sans-serif;
+body, html {
+  font-family: 'Bangers', cursive;
+  color: black;
+  text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}
+
+.bg {
+  background-image: url("images/test3.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+h2 {
+  padding: 10px 0px 0px 0px;
+  margin: 0px;
+}
+
+h2, h3, h4{
+  font-size: 24px;
 }
 
 button, input[type="text"] {
@@ -18,28 +41,48 @@ ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: inline-block
+  display: inline-block;
 }
 
 li {
   padding: 10px;
 }
 
-li, img {
-  max-width: 500px;
+footer {
+  text-align: center;
+  color: black;
+  padding: 10px;
+}
+
+.toptext{
+  width: 400px;
+  height: 400px;
+  background-size: 250px, 400px;
+  background-position: center;
+  position: relative;
+  display: inline-block;
+  color: black;
+  padding: 5px;
+  letter-spacing: 5px;
 }
 
 .container {
   max-width: 600px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .error-message {
     color: red;
+    text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
 }
 
 .hidden {
   display: none;
+}
+
+.enterName{
+  font-size: 20px;
 }
 
 .group {
