@@ -9,13 +9,13 @@ function displayResults(responseJson) {
   $('#results-list').empty();
   for (let i=0;i<responseJson.results.length;i++){
     $('#results-list').append(
-      `<li class=item>   
-      <img src="${responseJson.results[i].image.url}" class="results-img">     
-        <h3>${responseJson.results[i].name}</h3>
-        <p>${responseJson.results[i].biography['full-name']}</p>
-        <p>${responseJson.results[i].appearance.race}</p>
-        <p>${responseJson.results[i].appearance.height}</p>
-        <p>${responseJson.results[i].appearance.weight}</p>
+      `<li class="item">   
+      ${renderImage(responseJson.results[i].image.url,responseJson.results[i].name)}
+      <ul>
+        <li>${responseJson.results[i].biography['full-name']} (${responseJson.results[i].appearance.race})</li>
+        <li>Height: ${responseJson.results[i].appearance.height}</li>
+        <li>Weight: ${responseJson.results[i].appearance.weight}</li>
+      </ul>
       <h4>Power Stats</h4>
       <ul>
         <li>Intelligence: ${responseJson.results[i].powerstats.intelligence}</li>
@@ -30,6 +30,7 @@ function displayResults(responseJson) {
       </li>`
     )}; 
   $('#results').removeClass('hidden');
+  $('#js-error-message').addClass('hidden')
 };
 
 //find character user inputs
@@ -44,8 +45,17 @@ function findCharacter(query) {
     })
     .then(responseJson => displayResults(responseJson))
     .catch(err => {
-      $('#js-error-message').text(`Character Not Found. Try using adding a "-" (i.e. A-Bomb,Spider-man).`);
+      $('#js-error-message').text(`Character Not Found. Try using adding a dash ("-")(i.e. Spider-man).`);
     });
+}
+
+// render result images
+function renderImage(url,name){
+  return `<span>
+      <h3 class="toptext" style="
+      background: url(${url});">
+      ${name}</h3>    
+      </span>`
 }
 
 // watch form
