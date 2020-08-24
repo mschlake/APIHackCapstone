@@ -6,4 +6,4 @@ https://mschlake.github.io/HeroVsVillian/
 ![ScreenShot](/images/Screenshot.png)
 
 # Summary 
-This should have a concise explanation of what your app does. Try to frame this from the standpoint of what the user does, or what the app enables for the user.
+The Hero vs. Villian app allows the user to search and display information on their favorite Superheroes or Villians from both comic universes (DC/Marvel). The app pulls data from the SuperHero API and displays powerstats, images, appearance, and information about the character the user searches for. 
