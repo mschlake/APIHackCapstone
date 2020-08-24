@@ -1,2 +1,2 @@
-# API Hack Capstone
-API Hack Capstone - HTML, CSS, and Jquery
+# Hero vs. Villian
+API Hack Capstone App - HTML, CSS, and Jquery
