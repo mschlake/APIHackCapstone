@@ -45,7 +45,7 @@ ul {
 }
 
 li {
-  padding: 10px;
+  padding: 5px;
 }
 
 footer {
@@ -54,22 +54,26 @@ footer {
   padding: 10px;
 }
 
-.toptext{
-  width: 400px;
-  height: 400px;
-  background-size: 250px, 400px;
-  background-position: center;
-  position: relative;
+.results-img{
   display: inline-block;
-  color: black;
-  padding: 5px;
-  letter-spacing: 5px;
+  position: relative;
+  border-radius: 50%;
+  width: 75%;
 }
 
 .container {
   max-width: 600px;
   margin: 0 auto;
   text-align: center;
+}
+
+.powerStats{
+  padding: 10px;
+  margin: 0px;
+}
+
+.realName {
+  font-size: 20px;
 }
 
 .error-message {
@@ -97,5 +101,6 @@ footer {
 @media all and (min-width: 600px){
   .group{
     flex-direction: row;
+    justify-content: center;
   }
 }
