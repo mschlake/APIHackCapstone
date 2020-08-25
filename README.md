@@ -1,7 +1,8 @@
 # Hero vs. Villian
 
+
 # Technology Used
-(HTML/CSS/JavaScript/Jquery)
+HTML/CSS/JavaScript/Jquery
 
 https://mschlake.github.io/HeroVsVillian/
 
