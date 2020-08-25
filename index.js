@@ -5,7 +5,6 @@ const apiKey = '3108457009190775';
 
 //display characters and information on page
 function displayResults(responseJson) {
-  console.log(responseJson);
   $('#results-list').empty();
   for (let i=0;i<responseJson.results.length;i++){
     $('#results-list').append(
