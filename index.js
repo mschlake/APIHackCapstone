@@ -45,7 +45,7 @@ function findCharacter(query) {
     })
     .then(responseJson => displayResults(responseJson))
     .catch(err => {
-      $('#js-error-message').text(`Character Not Found. Try using adding a dash ("-")(i.e. Spider-man).`);
+      $('#js-error-message').text(`Character Not Found. Try adding a dash ("-") (i.e. Spider-man).`);
     });
 }
 
