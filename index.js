@@ -1,6 +1,6 @@
 'use strict';
 
-var characters = [] ;
+var currentCharacter = 1;
 const apiKey = '3108457009190775';
 
 //display characters and information on page
@@ -27,10 +27,12 @@ function displayResults(responseJson) {
         <li>Power: ${responseJson.results[i].powerstats.power}</li>
         <li>Combat: ${responseJson.results[i].powerstats.combat}</li>
       </ul>
+        <button type="button" id="assoc-button" class="button assoc-button">Super Team(s)</button>
       </li>`
-    )}; 
+      )}; 
   $('#results').removeClass('hidden');
-  $('#js-error-message').addClass('hidden')
+  $('#js-error-message').empty()
+  teamButton();
 };
 
 //find character user inputs
@@ -43,9 +45,14 @@ function findCharacter(query) {
       }
       throw new Error(response.statusText);
     })
-    .then(responseJson => displayResults(responseJson))
+    .then(responseJson => {
+      currentCharacter = responseJson.results[0].id
+      displayResults(responseJson)
+      })
     .catch(err => {
-      $('#js-error-message').text(`Character Not Found. Try adding a dash ("-") (i.e. Spider-man).`);
+      $('#results').addClass('hidden');
+      $('#results-list').empty();
+      $('#js-error-message').text(`${userCharacter} Character Not Found. Try adding a dash ("-") (i.e. Spider-man).`);
     });
 }
 
@@ -59,3 +66,38 @@ function watchForm(){
 }
 
 $(watchForm);
+
+// find super teams
+function findTeams(){
+  let url = `https://www.superheroapi.com/api.php/${apiKey}/${currentCharacter}/connections`;
+  fetch(url)
+    .then (response => {
+        return response.json();
+    })
+    .then (responseJson => {
+      console.log(responseJson);
+      displayTeams(responseJson);
+    })
+    .catch (err => console.log(err)
+    )
+}
+
+// display super team
+function displayTeams(){
+  $('#associates').empty();
+  for (let i=0;i<responseJson.results.length;i++){
+    $('#associates').append(
+    `<li class="item"> 
+      <h3 class>${responseJson.results[i].connections.group-affiliation}</h3>  
+    </li>`
+    )}; 
+  $('#associates').removeClass('hidden');
+}
+
+// watch super team button
+function teamButton(){
+    $('#assoc-button').click(event => {
+    event.preventDefault();
+    findTeams();
+  });
+}
