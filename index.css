@@ -35,7 +35,7 @@ h2 {
 h2, h3, h4{
   font-size: 24px;
 }
-/* button(s) syling */
+/* button(s) styling */
 button, input[type="text"] {
   padding: 5px;
   border-radius: 25px;
@@ -56,7 +56,7 @@ button:hover {
   text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
 }
 
-.assoc-button{
+.teamButton{
   width: 150px;   
   margin: 0 auto;
   display: block;
@@ -103,6 +103,11 @@ footer {
     color: red;
     text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
     letter-spacing: 2px;
+}
+
+.superTeams {
+  font-size: 22px;
+  display: inline;
 }
 
 /* hide class */
