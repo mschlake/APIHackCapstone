@@ -9,7 +9,7 @@ function displayResults(responseJson) {
   for (let i=0;i<responseJson.results.length;i++){
     $('#results-list').append(
       `<li class="item"> 
-      <h3 class>${responseJson.results[i].name}</h3>  
+      <h3>${responseJson.results[i].name}</h3>
       <img src="${responseJson.results[i].image.url}" class="results-img">
       <ul>
         <li class="realName">True Identity:<br> ${responseJson.results[i].biography['full-name']} (${responseJson.results[i].appearance.race})</li>
@@ -27,8 +27,14 @@ function displayResults(responseJson) {
         <li>Power: ${responseJson.results[i].powerstats.power}</li>
         <li>Combat: ${responseJson.results[i].powerstats.combat}</li>
       </ul>
-        <button type="button" id="assoc-button" class="button assoc-button">Super Team(s)</button>
-      </li>`
+        <button type="button" id="assoc-button" class="button teamButton js-assoc-button">Super Team(s)</button>
+      </li>
+      <div id="teams" class="hidden">
+      <section id="associates">
+          <ul id="associate-list" class="group">
+          </ul>
+      </section>
+      </div>`
       )}; 
   $('#results').removeClass('hidden');
   $('#js-error-message').empty()
@@ -56,6 +62,44 @@ function findCharacter(query) {
     });
 }
 
+// find super teams
+function findTeams(){
+  let url = `https://www.superheroapi.com/api.php/${apiKey}/${currentCharacter}/connections`;
+  fetch(url)
+    .then (response => {
+      return response.json();
+    })
+    .then (responseJson => {
+      displayTeams(responseJson);
+    })
+    .catch (err => {
+      console.log(err);
+      $('#js-error-message').text(`No Super Teams found for ${userCharacter} Character.`);
+    });
+}
+
+// display super team
+function displayTeams(data){
+  console.log(data);
+  $('#associates').empty();
+  let groupAffiliation = data["group-affiliation"].split(",");
+  for (let i=0;i<groupAffiliation.length;i++){
+  $('#associates').append(
+    `<li class="item"> 
+      <h3 class="superTeams">${groupAffiliation[i]}</h3>  
+    </li>`
+  )};
+  $('#teams').removeClass('hidden');
+  $('#js-error-message').empty();
+}
+
+// watch super team button
+function teamButton(){
+    $('#results-list').on('click', '.js-assoc-button', event => {
+    findTeams();
+  });
+}
+
 // watch form
 function watchForm(){
   $('form').submit(event => {
@@ -66,38 +110,3 @@ function watchForm(){
 }
 
 $(watchForm);
-
-// find super teams
-function findTeams(){
-  let url = `https://www.superheroapi.com/api.php/${apiKey}/${currentCharacter}/connections`;
-  fetch(url)
-    .then (response => {
-        return response.json();
-    })
-    .then (responseJson => {
-      console.log(responseJson);
-      displayTeams(responseJson);
-    })
-    .catch (err => console.log(err)
-    )
-}
-
-// display super team
-function displayTeams(){
-  $('#associates').empty();
-  for (let i=0;i<responseJson.results.length;i++){
-    $('#associates').append(
-    `<li class="item"> 
-      <h3 class>${responseJson.results[i].connections.group-affiliation}</h3>  
-    </li>`
-    )}; 
-  $('#associates').removeClass('hidden');
-}
-
-// watch super team button
-function teamButton(){
-    $('#assoc-button').click(event => {
-    event.preventDefault();
-    findTeams();
-  });
-}
