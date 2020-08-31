@@ -27,7 +27,7 @@ function displayResults(responseJson) {
         <li>Power: ${responseJson.results[i].powerstats.power}</li>
         <li>Combat: ${responseJson.results[i].powerstats.combat}</li>
       </ul>
-        <button type="button" id="assoc-button" class="button teamButton js-assoc-button">Super Team(s)</button>
+        <button type="button" id="${responseJson.results[i].id}" class="button teamButton js-assoc-button">Super Team(s)</button>
       </li>
       <div id="teams" class="hidden">
       <section id="associates">
@@ -35,11 +35,14 @@ function displayResults(responseJson) {
           </ul>
       </section>
       </div>`
-      )}; 
+      ); 
+  let currentCharacter = responseJson.results[i].id
+  teamButton(currentCharacter);
+  }
   $('#results').removeClass('hidden');
   $('#js-error-message').empty()
-  teamButton();
 };
+
 
 //find character user inputs
 function findCharacter(query) {
@@ -52,8 +55,8 @@ function findCharacter(query) {
       throw new Error(response.statusText);
     })
     .then(responseJson => {
-      currentCharacter = responseJson.results[0].id
       displayResults(responseJson)
+      // currentCharacter = responseJson.results[0].id
       })
     .catch(err => {
       $('#results').addClass('hidden');
@@ -63,7 +66,7 @@ function findCharacter(query) {
 }
 
 // find super teams
-function findTeams(){
+function findTeams(currentCharacter){
   let url = `https://www.superheroapi.com/api.php/${apiKey}/${currentCharacter}/connections`;
   fetch(url)
     .then (response => {
@@ -94,9 +97,9 @@ function displayTeams(data){
 }
 
 // watch super team button
-function teamButton(){
-    $('#results-list').on('click', '.js-assoc-button', event => {
-    findTeams();
+function teamButton(currentCharacter){
+    $('#results-list').on('click', `#${currentCharacter}`, event => {
+    findTeams(currentCharacter);
   });
 }
 
