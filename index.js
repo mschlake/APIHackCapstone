@@ -29,8 +29,8 @@ function displayResults(responseJson) {
       </ul>
         <button type="button" id="${responseJson.results[i].id}" class="button teamButton js-assoc-button">Super Team(s)</button>
       </li>
-      <div id="teams" class="hidden">
-      <section id="associates">
+      <div id="${responseJson.results[i].id}teams" class="hidden">
+      <section id="${responseJson.results[i].id}associates">
           <ul id="associate-list" class="group">
           </ul>
       </section>
@@ -42,7 +42,6 @@ function displayResults(responseJson) {
   $('#results').removeClass('hidden');
   $('#js-error-message').empty()
 };
-
 
 //find character user inputs
 function findCharacter(query) {
@@ -56,7 +55,6 @@ function findCharacter(query) {
     })
     .then(responseJson => {
       displayResults(responseJson)
-      // currentCharacter = responseJson.results[0].id
       })
     .catch(err => {
       $('#results').addClass('hidden');
@@ -66,14 +64,16 @@ function findCharacter(query) {
 }
 
 // find super teams
-function findTeams(currentCharacter){
-  let url = `https://www.superheroapi.com/api.php/${apiKey}/${currentCharacter}/connections`;
+function findTeams(newCharacter){
+  let url = `https://www.superheroapi.com/api.php/${apiKey}/${newCharacter}/connections`;
   fetch(url)
     .then (response => {
       return response.json();
     })
     .then (responseJson => {
-      displayTeams(responseJson);
+      if(responseJson){
+        displayTeams(responseJson, newCharacter);
+      }
     })
     .catch (err => {
       console.log(err);
@@ -82,24 +82,23 @@ function findTeams(currentCharacter){
 }
 
 // display super team
-function displayTeams(data){
-  console.log(data);
-  $('#associates').empty();
+function displayTeams(data, newCharacter){
+  $(`#${newCharacter}associates`).empty();
   let groupAffiliation = data["group-affiliation"].split(",");
   for (let i=0;i<groupAffiliation.length;i++){
-  $('#associates').append(
+  $(`#${newCharacter}associates`).append(
     `<li class="item"> 
       <h3 class="superTeams">${groupAffiliation[i]}</h3>  
     </li>`
   )};
-  $('#teams').removeClass('hidden');
+  $(`#${newCharacter}teams`).removeClass('hidden');
   $('#js-error-message').empty();
 }
 
 // watch super team button
 function teamButton(currentCharacter){
-    $('#results-list').on('click', `#${currentCharacter}`, event => {
-    findTeams(currentCharacter);
+    $('button').on('click', event => {
+    findTeams(event.target.id);
   });
 }
 
