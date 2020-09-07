@@ -33,8 +33,7 @@ function displayResults(responseJson) {
           <ul id="associate-list" class="group">
           </ul>
       </section>
-      </div>
-      </li>`
+      </div>`
       ); 
   let currentCharacter = responseJson.results[i].id
   teamButton(currentCharacter);
