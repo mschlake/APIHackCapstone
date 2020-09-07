@@ -28,13 +28,13 @@ function displayResults(responseJson) {
         <li>Combat: ${responseJson.results[i].powerstats.combat}</li>
       </ul>
         <button type="button" id="${responseJson.results[i].id}" class="button teamButton js-assoc-button">Super Team(s)</button>
-      </li>
       <div id="${responseJson.results[i].id}teams" class="hidden">
       <section id="${responseJson.results[i].id}associates">
           <ul id="associate-list" class="group">
           </ul>
       </section>
-      </div>`
+      </div>
+      </li>`
       ); 
   let currentCharacter = responseJson.results[i].id
   teamButton(currentCharacter);
