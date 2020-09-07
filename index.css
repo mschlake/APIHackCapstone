@@ -94,6 +94,7 @@ footer {
   margin: 0px;
 }
 
+/* syling for character real name */
 .realName {
   font-size: 20px;
 }
@@ -106,7 +107,7 @@ footer {
 }
 
 .superTeams {
-  font-size: 22px;
+  font-size: 20px;
   display: inline;
 }
 
