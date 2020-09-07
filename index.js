@@ -10,7 +10,7 @@ function displayResults(responseJson) {
     $('#results-list').append(
       `<li class="item"> 
       <h3>${responseJson.results[i].name}</h3>
-      <img src="${responseJson.results[i].image.url}" class="results-img" alt="image">
+      <img src="${responseJson.results[i].image.url}" class="results-img">
       <ul>
         <li class="realName">True Identity:<br> ${responseJson.results[i].biography['full-name']} (${responseJson.results[i].appearance.race})</li>
         <li>Height: <br>${responseJson.results[i].appearance.height}</li>
