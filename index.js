@@ -76,7 +76,6 @@ function findTeams(newCharacter){
       }
     })
     .catch (err => {
-      console.log(err);
       $('#js-error-message').text(`No Super Teams found for ${userCharacter} Character.`);
     });
 }
